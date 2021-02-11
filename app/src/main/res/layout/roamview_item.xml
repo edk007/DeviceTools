@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/oldNewRoamList"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
@@ -15,7 +15,7 @@
 
     <TextView
         android:id="@+id/apMacRoamList"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/signalStrengthRoamList"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/apBandRoamList"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"

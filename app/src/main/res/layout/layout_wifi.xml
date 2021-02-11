@@ -87,7 +87,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="190dp"
         android:layout_marginTop="4dp"
         android:text="SSID:"
         android:textSize="12sp"
@@ -98,7 +98,7 @@
         android:id="@+id/ssidTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="250dp"
         android:layout_marginTop="4dp"
         android:text="ssid"
         android:textSize="12sp"
@@ -179,13 +179,13 @@
         android:id="@+id/roamTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
+        android:layout_marginStart="250dp"
         android:layout_marginTop="4dp"
         android:text="0000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/bgInfoImageView"
-        app:layout_constraintTop_toTopOf="@+id/bgInfoImageView" />
+        app:layout_constraintTop_toBottomOf="@id/ssidTextView" />
 
     <TextView
         android:id="@+id/textView8"
@@ -193,10 +193,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="190dp"
         android:layout_marginTop="4dp"
-        android:text="ROAM COUNT:"
+        android:text="ROAMS:"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/bgInfoImageView"
-        app:layout_constraintTop_toTopOf="@id/bgInfoImageView" />
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
     <TextView
         android:id="@+id/textView6"
@@ -213,7 +213,7 @@
         android:id="@+id/signalTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
+        android:layout_marginStart="250dp"
         android:layout_marginTop="4dp"
         android:text="-00"
         android:textSize="12sp"
@@ -236,7 +236,7 @@
         android:id="@+id/bandTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
+        android:layout_marginStart="250dp"
         android:layout_marginTop="4dp"
         android:text="000 (2.4Ghz)"
         android:textSize="12sp"
@@ -248,24 +248,24 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="190dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:text="AP MAC:"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/bgInfoImageView"
-        app:layout_constraintTop_toBottomOf="@id/textView7" />
+        app:layout_constraintTop_toTopOf="@id/bgInfoImageView" />
 
     <TextView
         android:id="@+id/apMacTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="4dp"
         android:text="12:34:56:78:90:ab"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/bgInfoImageView"
-        app:layout_constraintTop_toBottomOf="@+id/bandTextView" />
+        app:layout_constraintTop_toTopOf="@id/bgInfoImageView" />
 
     <ImageView
         android:id="@+id/bgLogImageView"

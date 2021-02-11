@@ -1,5 +1,6 @@
 package com.edtest.devicetools;
 
+import android.app.usage.StorageStatsManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +8,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.storage.StorageManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.UUID;
 
 import inet.ipaddr.IPAddressString;
 import inet.ipaddr.ipv6.IPv6Address;
@@ -67,6 +70,10 @@ public class InfoFragment extends Fragment {
     String ssid;
     String ipaddress;
     String randomMac;
+    String totalStorage;
+    String availableStorage;
+    String androidID;
+
 
     //TODO - Info
     // 1. put all kinds of device info in here
@@ -156,7 +163,22 @@ public class InfoFragment extends Fragment {
         //Random MAC
         randomMac = getMacAddr();
 
-    }
+        //Android ID
+        androidID = Settings.Secure.getString(getActivity().getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        //Storage
+        StorageStatsManager storageStatsManager = (StorageStatsManager) getActivity().getSystemService(Context.STORAGE_STATS_SERVICE);
+        StorageManager storageManager = (StorageManager) getActivity().getSystemService(Context.STORAGE_SERVICE);
+        try {
+            UUID uuid2 = StorageManager.UUID_DEFAULT;
+            long fgb = storageStatsManager.getFreeBytes(uuid2) / 1024 / 1024 / 1024;
+            availableStorage = String.valueOf(fgb);
+            long gb = storageStatsManager.getTotalBytes(uuid2) / 1024 / 1024 / 1024;
+            totalStorage = String.valueOf(gb);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//onCreate
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -187,6 +209,9 @@ public class InfoFragment extends Fragment {
         //ril.Serialnumber
         titles.add("Serial Number:");
         values.add(rilSerialnumber);
+        //Settings.Secure.ANDROID_ID
+        titles.add("Android ID:");
+        values.add(androidID);
         //ro.boot.carrierid
         titles.add("Carrier ID:");
         values.add(carrierid);
@@ -223,12 +248,13 @@ public class InfoFragment extends Fragment {
         //Random MAC
         titles.add("SSID Random MAC:");
         values.add(randomMac);
+        //Storage
+        titles.add("Storage free/total:");
+        values.add(availableStorage + "GB / " + totalStorage + "GB");
 
         adapter = new InfoRecyclerViewAdapter(getContext(), titles, values);
         recyclerView.setAdapter(adapter);
-
-
-    }
+    } //onViewCreated
 
     private void startWiFi() {
         //setup wifi manager

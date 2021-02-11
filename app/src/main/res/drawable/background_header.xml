@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Style for "header" -->
+    <!-- Add this snippet to layer-list xml in drawable. -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:topLeftRadius="0dp" android:topRightRadius="0dp" android:bottomLeftRadius="12dp" android:bottomRightRadius="12dp" />
+            <solid android:color="@color/header_color" />
+            <item android:shadowColor="@color/shadows"></item>
+            <!-- TextView shadow offsets do not respect scale. -->
+            <item android:name="android:shadowDx">0</item>
+            <item android:name="android:shadowDy">2</item>
+        </shape>
+    </item>
+</layer-list>

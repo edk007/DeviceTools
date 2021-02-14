@@ -165,7 +165,6 @@ public class PermissionsActivity extends AppCompatActivity {
     public void activateKnoxLicense(View view) {
         KnoxEnterpriseLicenseManager licenseManager = KnoxEnterpriseLicenseManager.getInstance(this);
         try {
-            //TODO - move license key??
             licenseManager.activateLicense(getString(R.string.kpe_key));
             Log.w(TAG,TAG2 + "ACTIVATING_KNOX_LICENSE");
 

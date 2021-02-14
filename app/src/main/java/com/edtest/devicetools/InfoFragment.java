@@ -74,14 +74,6 @@ public class InfoFragment extends Fragment {
     String availableStorage;
     String androidID;
 
-
-    //TODO - Info
-    // 1. put all kinds of device info in here
-    // 2. put placeholders for anything missing that should be displayed for any kind of support
-
-    //TODO - convert this to a different layout and control info order programatically - not with a bunch of fields
-    //TODO - make sure to call out anything missing that HQ could help get
-
     public static InfoFragment newInstance(int page, String title) {
         InfoFragment infoFragment = new InfoFragment();
         Bundle args = new Bundle();

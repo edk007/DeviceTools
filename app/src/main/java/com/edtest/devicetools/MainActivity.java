@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "LOG_TEST_D");
         Log.i(TAG, "LOG_TEST_I");
         Log.v(TAG, "LOG_TEST_V");
-        Log.w(TAG, "LOG_TEST_w");
+        Log.w(TAG, "LOG_TEST_W");
         Log.wtf(TAG, "LOG_TEST_WTF");
 
 

@@ -32,10 +32,6 @@ public class BatteryFragment extends Fragment {
     String timeToRecharge;
     boolean isCharging;
 
-    //TODO - Battery
-    // 2. any other battery info in android
-    // 3. put what's missing as placeholders - charge cycles, manufactured date,
-
     public static BatteryFragment newInstance(int page, String title) {
         BatteryFragment batteryFragment = new BatteryFragment();
         Bundle args = new Bundle();
@@ -54,9 +50,8 @@ public class BatteryFragment extends Fragment {
         BatteryManager bm = (BatteryManager) getActivity().getSystemService(BATTERY_SERVICE);
         isCharging = bm.isCharging();
         batteryLevel = String.valueOf(bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY));
-        timeToRecharge = String.valueOf(bm.computeChargeTimeRemaining() / 1000) + " (seconds)";
+        timeToRecharge = bm.computeChargeTimeRemaining() / 1000 + " (seconds)";
 
-        //TODO charge cycles??
     }
 
     @Override

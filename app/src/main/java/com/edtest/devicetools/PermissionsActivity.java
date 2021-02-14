@@ -77,7 +77,7 @@ public class PermissionsActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //we have permission - disable this button
             locationButton.setElevation(0);
-            locationButton.setBackground(getDrawable(R.drawable.button_permission_inactive_layer_list));
+            locationButton.setBackground(ContextCompat.getDrawable(this, R.drawable.button_permission_inactive_layer_list));
             locationButton.setEnabled(false);
             locationGranted = true;
         }
@@ -100,19 +100,19 @@ public class PermissionsActivity extends AppCompatActivity {
                                 //we already have DeviceAdmin
                                 deviceAdminButton.setEnabled(false);
                                 deviceAdminButton.setElevation(0);
-                                deviceAdminButton.setBackground(getDrawable(R.drawable.button_permission_inactive_layer_list));
+                                deviceAdminButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_permission_inactive_layer_list));
                             }
 
                             if (knoxLicenseActivated) {
                                 knoxLicenseButton.setEnabled(false);
                                 knoxLicenseButton.setElevation(0);
-                                knoxLicenseButton.setBackground(getDrawable(R.drawable.button_permission_inactive_layer_list));
+                                knoxLicenseButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_permission_inactive_layer_list));
                             }
 
                             if (locationGranted && deviceAdminGranted && knoxLicenseActivated) {
                                 closeButton.setEnabled(true);
                                 closeButton.setElevation(4);
-                                closeButton.setBackground(getDrawable(R.drawable.button_permission_active_layer_list));
+                                closeButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_permission_active_layer_list));
                             }
 
                         }
@@ -138,7 +138,7 @@ public class PermissionsActivity extends AppCompatActivity {
                 //got location permission
                 Toast.makeText(this,"Location Permission Granted", Toast.LENGTH_SHORT).show();
                 locationButton.setElevation(0);
-                locationButton.setBackground(getDrawable(R.drawable.button_permission_inactive_layer_list));
+                locationButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_permission_inactive_layer_list));
                 locationButton.setEnabled(false);
                 locationGranted = true;
             }
@@ -166,7 +166,7 @@ public class PermissionsActivity extends AppCompatActivity {
         KnoxEnterpriseLicenseManager licenseManager = KnoxEnterpriseLicenseManager.getInstance(this);
         try {
             //TODO - move license key??
-            licenseManager.activateLicense("");
+            licenseManager.activateLicense(getString(R.string.kpe_key));
             Log.w(TAG,TAG2 + "ACTIVATING_KNOX_LICENSE");
 
         } catch (Exception e) {
@@ -181,13 +181,11 @@ public class PermissionsActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        //TODO do we need to check for device admin or knox license again here??
-        // some buttons may not enable properly sometimes?
 
         if (locationGranted && deviceAdminGranted && knoxLicenseActivated) {
             closeButton.setEnabled(true);
             closeButton.setElevation(4);
-            closeButton.setBackground(getDrawable(R.drawable.button_permission_active_layer_list));
+            closeButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_permission_active_layer_list));
         }
     } //onResume
 

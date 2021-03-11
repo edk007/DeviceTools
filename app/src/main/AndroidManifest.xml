@@ -42,7 +42,14 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <activity android:name=".PermissionsActivity"/>
+        <activity
+            android:name=".PermissionsActivity">
+        </activity>
+
+        <activity
+            android:name=".DumpStateActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <meta-data android:name="com.samsung.knoxlicense.permissions" android:value="true"/>
 

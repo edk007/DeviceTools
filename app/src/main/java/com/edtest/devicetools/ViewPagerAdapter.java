@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
-    private static int NUM_ITEMS = 3;
+    private static int NUM_ITEMS = 4;
 
     public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
@@ -18,12 +18,14 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0: // Fragment # 0 - This will show FirstFragment
+            case 0:
                 return WiFiFragment.newInstance(0, "WIFI");
-            case 1: // Fragment # 0 - This will show FirstFragment different title
-                return BatteryFragment.newInstance(1, "BATTERY");
-            case 2: // Fragment # 1 - This will show SecondFragment
-                return InfoFragment.newInstance(2, "INFO");
+            case 1:
+                return CellFragment.newInstance(1, "CELL");
+            case 2:
+                return BatteryFragment.newInstance(2, "BATTERY");
+            case 3:
+                return InfoFragment.newInstance(3, "INFO");
             default:
                 return null;
         }
@@ -37,11 +39,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 0: // Fragment # 0 - This will show FirstFragment
+            case 0:
                 return "WIFI";
-            case 1: // Fragment # 0 - This will show FirstFragment different title
+            case 1:
+                return "CELL";
+            case 2:
                 return "BATTERY";
-            case 2: // Fragment # 1 - This will show SecondFragment
+            case 3:
                 return "INFO";
             default:
                 return null;

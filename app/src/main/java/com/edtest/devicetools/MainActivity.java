@@ -2,6 +2,7 @@ package com.edtest.devicetools;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -10,6 +11,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -19,6 +21,8 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO - handle landscape and increase max for singal count?  or show roaming log next to chart?
     // if these are fragments i can move them side by side?
-
-    //TODO - add in the package dumping capabilities from the package tool app
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
             da = mDPM.isAdminActive(mDeviceAdmin);
         }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || !da || !knox) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED || !da || !knox) {
             //if we don't have permission - need to get it granted
             Intent intent = new Intent(getApplicationContext(), PermissionsActivity.class);
             startActivity(intent);
@@ -111,6 +114,37 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        switch (item.getItemId()) {
+            case R.id.action_about:
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle(getString(R.string.about_title));
+                alert.setMessage(getString(R.string.about_text));
+                alert.setPositiveButton("OK",null);
+                alert.show();
+                return true;
+            case R.id.dumpstate_menu_item:
+                //Open up new activity
+                //start charting activity
+                Intent intent = new Intent(getApplicationContext(), DumpStateActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return false;
+        }
     }
 
     private boolean checkKnox() {

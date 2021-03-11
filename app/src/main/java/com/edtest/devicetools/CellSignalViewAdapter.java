@@ -1,7 +1,6 @@
 package com.edtest.devicetools;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+public class CellSignalViewAdapter extends RecyclerView.Adapter<CellSignalViewAdapter.ViewHolder> {
 
     private List<Integer> mViewColors;
     private List<String> mSignalStrengths;
     private List<String> mSignalCounts;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    private MyRecyclerViewAdapter.ItemClickListener mClickListener;
     private Context context;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, List<Integer> colors, List<String> signalStrengths, List<String> signalCounts) {
+    CellSignalViewAdapter(Context context, List<Integer> colors, List<String> signalStrengths, List<String> signalCounts) {
         this.mInflater = LayoutInflater.from(context);
         this.mViewColors = colors;
         this.mSignalStrengths = signalStrengths;
@@ -36,7 +35,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        View view = mInflater.inflate(R.layout.cell_signal_recyclerview_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -52,35 +51,36 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         //holder.myImageView.setBackgroundColor(color);
         switch(color) {
             case 1:
-                holder.myImageView.setBackground(ContextCompat.getDrawable(context,R.drawable.bar_green_layer_list));
-                holder.myTextView.setTextColor(ContextCompat.getColor(context, R.color.green));
-                break;
-            case 2:
-                holder.myImageView.setBackground(ContextCompat.getDrawable(context,R.drawable.bar_yellow_layer_list));
-                holder.myTextView.setTextColor(ContextCompat.getColor(context, R.color.yellow));
-                break;
-            case 3:
                 holder.myImageView.setBackground(ContextCompat.getDrawable(context,R.drawable.bar_red_layer_list));
                 holder.myTextView.setTextColor(ContextCompat.getColor(context, R.color.red));
+                holder.myImageView.getLayoutParams().height = 40;
+                holder.myImageView.requestLayout();
+                break;
+            case 2:
+                holder.myImageView.setBackground(ContextCompat.getDrawable(context,R.drawable.bar_orange_layer_list));
+                holder.myTextView.setTextColor(ContextCompat.getColor(context, R.color.orange));
+                holder.myImageView.getLayoutParams().height = 80;
+                holder.myImageView.requestLayout();
+                break;
+            case 3:
+                holder.myImageView.setBackground(ContextCompat.getDrawable(context,R.drawable.bar_yellow_layer_list));
+                holder.myTextView.setTextColor(ContextCompat.getColor(context, R.color.yellow));
+                holder.myImageView.getLayoutParams().height = 120;
+                holder.myImageView.requestLayout();
+                break;
+            case 4:
+                holder.myImageView.setBackground(ContextCompat.getDrawable(context,R.drawable.bar_green_layer_list));
+                holder.myTextView.setTextColor(ContextCompat.getColor(context, R.color.green));
+                holder.myImageView.getLayoutParams().height = 160;
+                holder.myImageView.requestLayout();
+                break;
+            case 5:
+                holder.myImageView.setBackground(ContextCompat.getDrawable(context,R.drawable.bar_blue_layer_list));
+                holder.myTextView.setTextColor(ContextCompat.getColor(context, R.color.blue));
+                holder.myImageView.getLayoutParams().height = 200;
+                holder.myImageView.requestLayout();
                 break;
         }
-
-        try {
-            int s = Math.abs(Integer.parseInt(signalStrength));
-            int barHeight = 35;
-            if (s > 0) {
-                if (s < 35) { barHeight = 200; }
-                else if (s > 90 ) { barHeight = 35; }
-                else {
-                    barHeight = 200-((s-35)*3);
-                }
-                holder.myImageView.getLayoutParams().height = barHeight;
-                holder.myImageView.requestLayout();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     // total number of rows
@@ -115,7 +115,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     // allows clicks events to be caught
-    public void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(MyRecyclerViewAdapter.ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
@@ -123,4 +123,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
+
+
 }

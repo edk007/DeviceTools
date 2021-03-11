@@ -7,11 +7,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.net.wifi.WifiInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +32,7 @@ public class PermissionsActivity extends AppCompatActivity {
     public static final String TAG2 = "PERMISSIONS_SCREEN: ";
 
     Button locationButton;
+    Button phoneStateButton;
     Button deviceAdminButton;
     Button knoxLicenseButton;
     Button closeButton;
@@ -44,6 +42,7 @@ public class PermissionsActivity extends AppCompatActivity {
     boolean locationGranted = false;
     boolean deviceAdminGranted = false;
     boolean knoxLicenseActivated = false;
+    boolean readPhoneStateGranted = false;
 
     private static final int DEVICE_ADMIN_ADD_RESULT_ENABLE = 1;
     private ComponentName mDeviceAdmin;
@@ -55,6 +54,7 @@ public class PermissionsActivity extends AppCompatActivity {
         setContentView(R.layout.permissions_popup_layout);
 
         locationButton = findViewById(R.id.locationButton);
+        phoneStateButton = findViewById(R.id.phoneStateButton);
         deviceAdminButton = findViewById(R.id.deviceAdminButton);
         knoxLicenseButton = findViewById(R.id.knoxLicenseButton);
         closeButton = findViewById(R.id.closeButton);
@@ -77,9 +77,17 @@ public class PermissionsActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //we have permission - disable this button
             locationButton.setElevation(0);
-            locationButton.setBackground(ContextCompat.getDrawable(this, R.drawable.button_permission_inactive_layer_list));
+            locationButton.setBackground(ContextCompat.getDrawable(this, R.drawable.button_inactive_layer_list));
             locationButton.setEnabled(false);
             locationGranted = true;
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+            //we have permission - disable this button
+            phoneStateButton.setElevation(0);
+            phoneStateButton.setBackground(ContextCompat.getDrawable(this, R.drawable.button_inactive_layer_list));
+            phoneStateButton.setEnabled(false);
+            readPhoneStateGranted = true;
         }
 
         Runnable periodicTask = new Runnable(){
@@ -100,19 +108,19 @@ public class PermissionsActivity extends AppCompatActivity {
                                 //we already have DeviceAdmin
                                 deviceAdminButton.setEnabled(false);
                                 deviceAdminButton.setElevation(0);
-                                deviceAdminButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_permission_inactive_layer_list));
+                                deviceAdminButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_inactive_layer_list));
                             }
 
                             if (knoxLicenseActivated) {
                                 knoxLicenseButton.setEnabled(false);
                                 knoxLicenseButton.setElevation(0);
-                                knoxLicenseButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_permission_inactive_layer_list));
+                                knoxLicenseButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_inactive_layer_list));
                             }
 
-                            if (locationGranted && deviceAdminGranted && knoxLicenseActivated) {
+                            if (locationGranted && deviceAdminGranted && knoxLicenseActivated && readPhoneStateGranted) {
                                 closeButton.setEnabled(true);
                                 closeButton.setElevation(4);
-                                closeButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_permission_active_layer_list));
+                                closeButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_active_layer_list));
                             }
 
                         }
@@ -138,16 +146,28 @@ public class PermissionsActivity extends AppCompatActivity {
                 //got location permission
                 Toast.makeText(this,"Location Permission Granted", Toast.LENGTH_SHORT).show();
                 locationButton.setElevation(0);
-                locationButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_permission_inactive_layer_list));
+                locationButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_inactive_layer_list));
                 locationButton.setEnabled(false);
                 locationGranted = true;
             }
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+                //we have permission - disable this button
+                phoneStateButton.setElevation(0);
+                phoneStateButton.setBackground(ContextCompat.getDrawable(this, R.drawable.button_inactive_layer_list));
+                phoneStateButton.setEnabled(false);
+                readPhoneStateGranted = true;            }
         }
     }//onRequestPermissionResult
 
     public void getLocationPermission(View view) {
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+    }//getLocationPermission
+
+    public void getPhoneStatePermission(View view) {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
         }
     }//getLocationPermission
 
@@ -165,7 +185,7 @@ public class PermissionsActivity extends AppCompatActivity {
     public void activateKnoxLicense(View view) {
         KnoxEnterpriseLicenseManager licenseManager = KnoxEnterpriseLicenseManager.getInstance(this);
         try {
-            licenseManager.activateLicense(getString(R.string.kpe_key));
+            licenseManager.activateLicense(getString(R.string.kpe_key_dev));
             Log.w(TAG,TAG2 + "ACTIVATING_KNOX_LICENSE");
 
         } catch (Exception e) {
@@ -181,10 +201,10 @@ public class PermissionsActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        if (locationGranted && deviceAdminGranted && knoxLicenseActivated) {
+        if (locationGranted && deviceAdminGranted && knoxLicenseActivated && readPhoneStateGranted) {
             closeButton.setEnabled(true);
             closeButton.setElevation(4);
-            closeButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_permission_active_layer_list));
+            closeButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.button_active_layer_list));
         }
     } //onResume
 

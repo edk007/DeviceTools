@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/bgCellSignalChartImageView"
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_chart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cellNetworkLabelTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:text="TYPE BAND"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/bgCellSignalChartImageView"
+        app:layout_constraintStart_toStartOf="@+id/bgCellSignalChartImageView"
+        app:layout_constraintTop_toTopOf="@+id/bgCellSignalChartImageView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cellSignalStrengthView"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/bgCellSignalChartImageView"
+        app:layout_constraintStart_toStartOf="@+id/bgCellSignalChartImageView"
+        app:layout_constraintTop_toTopOf="@+id/bgCellSignalChartImageView" />
+
+    <TextView
+        android:id="@+id/cellQuality5"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/box_blue_layer_list"
+        android:text="5"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/cellSignalStrengthView"
+        app:layout_constraintEnd_toStartOf="@+id/cellQuality4" />
+
+
+    <TextView
+        android:id="@+id/cellQuality4"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/box_green_layer_list"
+        android:text="4"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/cellSignalStrengthView"
+        app:layout_constraintEnd_toStartOf="@+id/cellQuality3" />
+
+    <TextView
+        android:id="@+id/cellQuality3"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/box_yellow_layer_list"
+        android:text="3"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/cellSignalStrengthView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/cellQuality2"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/box_orange_layer_list"
+        android:text="2"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/cellSignalStrengthView"
+        app:layout_constraintStart_toEndOf="@+id/cellQuality3" />
+
+
+    <TextView
+        android:id="@+id/cellQuality1"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/box_red_layer_list"
+        android:text="1"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/cellSignalStrengthView"
+        app:layout_constraintStart_toEndOf="@+id/cellQuality2" />
+
+    <ImageView
+        android:id="@+id/bgCellInfoImageView"
+        android:layout_width="0dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bgCellSignalChartImageView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cellNetworkInfoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bgCellInfoImageView"
+        app:layout_constraintEnd_toEndOf="@+id/bgCellInfoImageView"
+        app:layout_constraintStart_toStartOf="@+id/bgCellInfoImageView"
+        app:layout_constraintTop_toTopOf="@id/bgCellInfoImageView" />
+
+    <ImageView
+        android:id="@+id/bgCellLogImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bgCellInfoImageView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cellLogRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/bgCellLogImageView"
+        app:layout_constraintEnd_toEndOf="@id/bgCellLogImageView"
+        app:layout_constraintStart_toStartOf="@id/bgCellLogImageView"
+        app:layout_constraintTop_toTopOf="@+id/bgCellLogImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

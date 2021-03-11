@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DumpStateActivity">
+
+    <ImageView
+        android:id="@+id/bgLogLevelImageView"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_chart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bgLogButtonImageView"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bgLogLevelImageView" />
+
+    <ImageView
+        android:id="@+id/bgLogListImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bgLogButtonImageView" />
+
+    <Button
+        android:id="@+id/lowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_active_layer_list"
+        android:text="LOW"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@id/bgLogLevelImageView"
+        app:layout_constraintEnd_toStartOf="@id/midButton"
+        app:layout_constraintTop_toTopOf="@id/bgLogLevelImageView" />
+
+    <Button
+        android:id="@+id/midButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_inactive_layer_list"
+        android:text="MID"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@id/bgLogLevelImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bgLogLevelImageView" />
+
+    <Button
+        android:id="@+id/highButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/button_inactive_layer_list"
+        android:text="HIGH"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@id/bgLogLevelImageView"
+        app:layout_constraintStart_toEndOf="@id/midButton"
+        app:layout_constraintTop_toTopOf="@id/bgLogLevelImageView" />
+
+    <Button
+        android:id="@+id/logButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/button_active_layer_list"
+        android:text="GENERATE LOG FILES"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bgLogButtonImageView"
+        app:layout_constraintBottom_toBottomOf="@id/bgLogButtonImageView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/logListRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/bgLogListImageView"
+        app:layout_constraintEnd_toEndOf="@id/bgLogListImageView"
+        app:layout_constraintStart_toStartOf="@id/bgLogListImageView"
+        app:layout_constraintTop_toTopOf="@id/bgLogListImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

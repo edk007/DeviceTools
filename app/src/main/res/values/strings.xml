@@ -5,6 +5,10 @@
     <string name="enterprise_device_admin">Device Tools</string>
     <string name="enterprise_device_admin_description">DeviceAdmin class</string>
 
+    <string name="about_title">About Device Info</string>
+    <string name="about_text">Ed Made This\nSample Application For Demo Purposes</string>
+
+
     <!-- License activation messages -->
     <string name="no_intent">License activation intent is not available</string>
     <string name="no_intent_action">License activation intent action is not available</string>

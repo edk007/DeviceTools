@@ -2,10 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Style for "rectangle" -->
     <!-- Add this snippet to layer-list xml in drawable. -->
-    <item android:width="320dp" android:height="45dp">
+    <item android:width="80dp" android:height="20dp">
         <shape android:shape="rectangle">
-            <corners android:radius="7dp" />
-            <solid android:color="#3F51B5" />
+            <solid android:color="@color/orange" />
         </shape>
     </item>
 </layer-list>

@@ -11,18 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerViewAdapter.ViewHolder>{
+public class DumpLogRecyclerViewAdapter extends RecyclerView.Adapter<DumpLogRecyclerViewAdapter.ViewHolder>{
 
-    private List<String> titles;
     private List<String> values;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    private InfoRecyclerViewAdapter.ItemClickListener mClickListener;
     private Context context;
 
-    // data is passed into the constructor
-    InfoRecyclerViewAdapter(Context context, List<String> titles, List<String> values) {
+    DumpLogRecyclerViewAdapter(Context context, List<String> values) {
         this.mInflater = LayoutInflater.from(context);
-        this.titles = titles;
         this.values = values;
         this.context = context;
     }
@@ -31,34 +28,30 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
     @Override
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.info_recyclerview_item, parent, false);
+        View view = mInflater.inflate(R.layout.log_recyclerview_item, parent, false);
         return new ViewHolder(view);
     }
 
     // binds the data to the view and textview in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String title = titles.get(position);
         String value = values.get(position);
-        holder.titleTextView.setText(title);
         holder.valueTextView.setText(value);
     }
 
     // total number of rows
     @Override
     public int getItemCount() {
-        return titles.size();
+        return values.size();
     }
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView titleTextView;
         TextView valueTextView;
 
         ViewHolder(View itemView) {
             super(itemView);
-            titleTextView = itemView.findViewById(R.id.infoTitle);
-            valueTextView = itemView.findViewById(R.id.infoValue);
+            valueTextView = itemView.findViewById(R.id.logListValue);
             itemView.setOnClickListener(this);
         }
 
@@ -74,7 +67,7 @@ public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerVi
     }
 
     // allows clicks events to be caught
-    public void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(InfoRecyclerViewAdapter.ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
